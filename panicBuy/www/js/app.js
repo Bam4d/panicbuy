@@ -15,6 +15,7 @@ gh.factory('ProductAPI', function($http) {
   return {
 
     addItem: function(prod) {
+      console.log(state.items);
       state.items.push(prod);
     },
     getState: function() {
@@ -88,17 +89,17 @@ gh.controller('CardsCtrl', function($scope, $state, $timeout, TDCardDelegate, Pr
       ProductAPI.addItem($scope.cards[index]);
     }
   }
-});
 
-gh.controller('CardCtrl', function($scope, TDCardDelegate) {
   $scope.cardSwipedLeft = function(index) {
     console.log('LEFT SWIPE');
     $scope.addCard(index, false);
   };
+  
   $scope.cardSwipedRight = function(index) {
     console.log('RIGHT SWIPE');
     $scope.addCard(index, true);
   };
+
 });
 
 gh.controller('ItemsCtrl', function($scope, ProductAPI) {
