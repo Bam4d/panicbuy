@@ -56,17 +56,17 @@ angular.module('app', ['ionic', 'starter'])
   // Each state's controller can be found in controllers.js
   $stateProvider
     
-    .state('page3', {
+    .state('config', {
       url: '/config',
       templateUrl: 'page3.html'
     })
     
-    .state('page5', {
+    .state('play', {
       url: '/play',
       templateUrl: 'page5.html'
     })
     
-    .state('page7', {
+    .state('items', {
       url: '/items',
       templateUrl: 'page7.html'
     })
@@ -93,30 +93,30 @@ angular.module('app', ['ionic', 'starter'])
 </div>
 <script id="page3.html" type="text/ng-template">
 <ion-view title="Start a new round">
-    <ion-content padding="true" scroll="false" class="has-header">
+    <ion-content padding="true" scroll="false" class="has-header" ng-controller="ConfigCtrl">
         <h4>Round Length</h4>
         <div class="button-bar">
-            <button class="button button-stable button-block">0:30</button>
-            <button class="button button-stable button-block">1:00</button>
-            <button class="button button-stable button-block">3:00</button>
+            <button class="button button-stable button-block" ng-class="{active: time == 30}" ng-click="time = 30">0:30</button>
+            <button class="button button-stable button-block" ng-class="{active: time == 60}" ng-click="time = 60">1:00</button>
+            <button class="button button-stable button-block" ng-class="{active: time == 180}" ng-click="time = 180">3:00</button>
         </div>
         <h4>Price Limit</h4>
         <div class="button-bar"></div>
         <form>
             <div class="button-bar">
-                <button class="button button-stable button-block">£10</button>
-                <button class="button button-stable button-block">£20</button>
-                <button class="button  button-block">£50</button>
+                <button class="button button-stable button-block" ng-class="{active: price == 10.00}" ng-click="price = 10.00">£10</button>
+                <button class="button button-stable button-block" ng-class="{active: price == 20.00}" ng-click="price = 20.00">£20</button>
+                <button class="button button-stable button-block" ng-class="{active: price == 50.00}" ng-click="price = 50.00">£50</button>
             </div>
         </form>
         <h4>Speed</h4>
         <div class="button-bar">
-            <button class="button button-stable button-block">Slow</button>
-            <button class="button button-stable button-block">Fast</button>
-            <button class="button button-stable button-block">Crazy</button>
+            <button class="button button-stable button-block" ng-class="{active: speed == 'slow'}" ng-click="speed = 'slow'">Slow</button>
+            <button class="button button-stable button-block" ng-class="{active: speed == 'fast'}" ng-click="speed = 'fast'">Fast</button>
+            <button class="button button-stable button-block" ng-class="{active: speed == 'cray'}" ng-click="speed = 'cray'">Cray</button>
         </div>
         <div class="spacer" style="width: 300px; height: 106px;"></div>
-        <a href="#/play" class="button button-positive button-block">Go!</a>
+        <button ng-click="go()" class="button button-positive button-block">Go!</button>
     </ion-content>
 </ion-view></script>
 <script id="page5.html" type="text/ng-template">
@@ -126,7 +126,7 @@ angular.module('app', ['ionic', 'starter'])
         <div class="spacer" style="width: 300px; height: 115px;"></div>
 
       <td-cards>
-        <td-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-swipe-left="cardSwipedLeft($index)" on-swipe-right="cardSwipedRight($index)" on-partial-swipe="cardPartialSwipe(amt)" class="card-{{card.index}}" ng-controller="CardCtrl">
+        <td-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-swipe-left="cardSwipedLeft($index)" on-swipe-right="cardSwipedRight($index)" on-partial-swipe="cardPartialSwipe(amt)" class="card-{{card.index}}">
           <div class="image">
             <div class="yes-text" ng-style="leftTextOpacity">LIKE</div>
             <img ng-src="{{card.image}}">

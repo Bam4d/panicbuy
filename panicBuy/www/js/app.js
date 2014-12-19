@@ -3,15 +3,53 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-gh = angular.module('starter', ['ionic', 'ionic.contrib.ui.tinderCards']);
+gh = angular.module('starter', ['ionic', 'ionic.contrib.ui.tinderCards', 'ui.router']);
 
-gh.controller('CardsCtrl', function($scope, TDCardDelegate) {
+gh.factory('ProductAPI', function($http) {
+
+  var state = {};
+
+  return {
+
+    getState: function() {
+      return state;
+    },
+    saveState: function(roundTime, priceLimit, speed) {
+      state.roundTimer = roundTime;
+      state.priceLimit = priceLimit;
+      state.speed = speed;
+    },
+    getProductList: function() {
+      return $http.post("http://api.gift-hacker.com/get", {price: state.priceLimit})
+    }
+  }
+})
+
+gh.controller('ConfigCtrl', function($scope, $state, ProductAPI) {
+
+  $scope.time = 30;
+  $scope.price = 10.00;
+  $scope.speed = "fast";
+
+  $scope.go = function() {
+    ProductAPI.saveState($scope.time, $scope.price, $scope.speed);
+    $state.go("play");
+  };
+ 
+});
+
+gh.controller('CardsCtrl', function($scope, TDCardDelegate, ProductAPI ) {
   console.log('CARDS CTRL');
   var cardTypes = [
     { image: 'max.jpg' },
     { image: 'ben.png' },
     { image: 'perry.jpg' },
   ];
+
+  ProductAPI.getProductList().then(function(xhr) {
+    console.log(arguments);
+    $scope.data = xhr.data;
+  })
 
   $scope.cards = Array.prototype.slice.call(cardTypes, 0);
 
@@ -51,3 +89,4 @@ gh.run(function($ionicPlatform) {
     }
   });
 });
+
