@@ -21,3 +21,14 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+ion-view.pane {
+	background: #f3f8fc;
+}
+
+p.logo {
+	text-align: center;
+
+	img {
+		width: 100%;
+	}
+}
