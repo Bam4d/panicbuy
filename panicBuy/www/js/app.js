@@ -107,7 +107,7 @@ gh.controller('ItemsCtrl', function($scope, ProductAPI) {
   $scope.items = ProductAPI.getState().items;
 
   $scope.showMe = function(item) {
-    window.open(item.link, '_blank', 'location=yes');
+    window.open(item.link, '_blank');
   };
 
 });
