@@ -7,7 +7,8 @@ gh = angular.module('starter', ['ionic', 'ionic.contrib.ui.tinderCards', 'ui.rou
 
 gh.factory('ProductAPI', function($http) {
 
-  var state = {};
+  var state = {
+  };
 
   return {
 
@@ -33,7 +34,7 @@ gh.controller('ConfigCtrl', function($scope, $state, ProductAPI) {
 
   $scope.go = function() {
     ProductAPI.saveState($scope.time, $scope.price, $scope.speed);
-    $state.go("play");
+    $state.go("items");
   };
  
 });
@@ -49,7 +50,7 @@ gh.controller('CardsCtrl', function($scope, TDCardDelegate, ProductAPI ) {
   ProductAPI.getProductList().then(function(xhr) {
     console.log(arguments);
     $scope.data = xhr.data;
-  })
+  });
 
   $scope.cards = Array.prototype.slice.call(cardTypes, 0);
 
@@ -73,6 +74,31 @@ gh.controller('CardCtrl', function($scope, TDCardDelegate) {
     console.log('RIGHT SWIPE');
     $scope.addCard();
   };
+});
+
+gh.controller('ItemsCtrl', function($scope, ProductAPI) {
+
+  // Delte this!!!!!!!!
+  ProductAPI.getProductList().then(function(xhr) {
+    console.log(arguments);
+    $scope.data = xhr.data;
+    ProductAPI.getState().items = $scope.data;
+
+    console.log("state:",ProductAPI.getState());
+
+    $scope.items = ProductAPI.getState().items;
+  });
+
+  
+  $scope.showMe = function(item) {
+
+    window.open(item.link, '_blank', 'location=yes');
+
+  };
+
+
+
+
 });
 
 gh.run(function($ionicPlatform) {
