@@ -122,7 +122,7 @@ angular.module('app', ['ionic', 'starter'])
 <script id="page5.html" type="text/ng-template">
 <ion-view title="BUY BUY BUY" ng-controller="CardsCtrl">
     <ion-content padding="true" scroll="false" class="has-header">
-        <h1>0:29</h1>
+        <h1 class="timer">0:29</h1>
         <div class="spacer" style="width: 300px; height: 115px;"></div>
 
       <td-cards>
@@ -153,7 +153,7 @@ angular.module('app', ['ionic', 'starter'])
                 <img ng-src="{{item.image}}">
                 <h2>{{item.title}}</h2>
                 <p>{{item.price}}</p>
-                <button class="button button-balanced button-block" ng-click="showMe(item)">Show me!</button>
+                <button class="button button-balanced button-block" ng-click="showe(item">Show me!</button>
             </ion-item>
         </ion-list>
     </ion-content>

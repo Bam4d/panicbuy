@@ -34,7 +34,7 @@ gh.controller('ConfigCtrl', function($scope, $state, ProductAPI) {
 
   $scope.go = function() {
     ProductAPI.saveState($scope.time, $scope.price, $scope.speed);
-    $state.go("items");
+    $state.go("play");
   };
  
 });
@@ -79,15 +79,15 @@ gh.controller('CardCtrl', function($scope, TDCardDelegate) {
 gh.controller('ItemsCtrl', function($scope, ProductAPI) {
 
   // Delte this!!!!!!!!
-  ProductAPI.getProductList().then(function(xhr) {
-    console.log(arguments);
-    $scope.data = xhr.data;
-    ProductAPI.getState().items = $scope.data;
+  // ProductAPI.getProductList().then(function(xhr) {
+  //   console.log(arguments);
+  //   $scope.data = xhr.data;
+  //   ProductAPI.getState().items = $scope.data;
 
-    console.log("state:",ProductAPI.getState());
+  //   console.log("state:",ProductAPI.getState());
 
-    $scope.items = ProductAPI.getState().items;
-  });
+  //   $scope.items = ProductAPI.getState().items;
+  // });
 
   
   $scope.showMe = function(item) {
