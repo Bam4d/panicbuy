@@ -42,9 +42,9 @@ gh.controller('ConfigCtrl', function($scope, $state, ProductAPI) {
 gh.controller('CardsCtrl', function($scope, TDCardDelegate, ProductAPI ) {
   console.log('CARDS CTRL');
   var cardTypes = [
-    { image: 'max.jpg' },
-    { image: 'ben.png' },
-    { image: 'perry.jpg' },
+    { image: 'lib/ionic-ion-tinder-cards/demo/max.jpg' },
+    { image: 'lib/ionic-ion-tinder-cards/demo/ben.png' },
+    { image: 'lib/ionic-ion-tinder-cards/demo/perry.jpg' },
   ];
 
   ProductAPI.getProductList().then(function(xhr) {
