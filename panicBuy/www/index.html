@@ -57,17 +57,17 @@ angular.module('app', ['ionic', 'starter'])
     
     .state('config', {
       url: '/config',
-      templateUrl: 'page3.html'
+      templateUrl: 'config.html'
     })
     
     .state('play', {
       url: '/play',
-      templateUrl: 'page5.html'
+      templateUrl: 'play.html'
     })
     
     .state('items', {
       url: '/items',
-      templateUrl: 'page7.html'
+      templateUrl: 'items.html'
     })
     ;
 
@@ -84,15 +84,16 @@ angular.module('app', ['ionic', 'starter'])
   <body ng-app="app" animation="slide-left-right-ios7">
   <div>
     <div>
-        <ion-nav-bar class="bar-stable">
-            <ion-nav-back-button class="button-icon icon ion-ios7-arrow-back">Back</ion-nav-back-button>
-        </ion-nav-bar>
+        <ion-nav-bar class="bar-stable"></ion-nav-bar>
         <ion-nav-view></ion-nav-view>
     </div>
 </div>
-<script id="page3.html" type="text/ng-template">
+<script id="config.html" type="text/ng-template">
 <ion-view title="Start a new round">
     <ion-content padding="true" scroll="false" class="has-header" ng-controller="ConfigCtrl">
+        <p class="logo">
+          <img src="img/logo@2x.png" />
+        </p>
         <h4>Round Length</h4>
         <div class="button-bar">
             <button class="button button-stable button-block" ng-class="{active: time == 30}" ng-click="time = 30">0:30</button>
@@ -109,11 +110,11 @@ angular.module('app', ['ionic', 'starter'])
             </div>
         </form>
         
-        <div class="spacer" style="width: 300px; height: 106px;"></div>
-        <button ng-click="go()" class="button button-positive button-block">Go!</button>
+        <div class="spacer" style="width: 300px; height: 30px;"></div>
+        <button ng-click="go()" class="button button-positive button-block raza-button">PLAY!</button>
     </ion-content>
 </ion-view></script>
-<script id="page5.html" type="text/ng-template">
+<script id="play.html" type="text/ng-template">
 <ion-view title="BUY BUY BUY" ng-controller="CardsCtrl">
     <ion-content padding="true" scroll="false" class="has-header">
         <h1 class="timer">{{timer | date: "mm:ss"}}</h1>
@@ -139,7 +140,7 @@ angular.module('app', ['ionic', 'starter'])
         </div>
     </ion-content>
 </ion-view></script>
-<script id="page7.html" type="text/ng-template">
+<script id="items.html" type="text/ng-template">
 <ion-view title="Gift Hacker Bag">
     <ion-content padding="true" class="has-header" ng-controller="ItemsCtrl">
         <ion-list>

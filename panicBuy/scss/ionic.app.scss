@@ -21,3 +21,28 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+ion-view.pane {
+	background: #f3f8fc;
+}
+
+p.logo {
+	text-align: center;
+
+	img {
+		width: 100%;
+	}
+}
+
+button.button.raza-button {
+	background: #3498DB;
+	border: none;
+	text-shadow: 0px -2px #2980B9;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 7px;
+	border-bottom-right-radius: 7px;
+	font-family: Helvetica;
+	border-bottom: 5px solid #2980B9;
+	font-weight: bold;
+	font-size: 1.5em;
+}
