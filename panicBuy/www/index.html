@@ -135,8 +135,8 @@ angular.module('app', ['ionic', 'starter'])
             <i ng-hide="cards.length" class="icon ion-loading-c" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>&nbsp;
         </div>
         <div class="button-bar">
-            <button class="button button-assertive button-block" ng-click="cardSwipedLeft($index);cardDestroyed($index)">No</button>
-            <button class="button button-balanced button-block" ng-click="cardSwipedRight($index);cardDestroyed($index)">Yes</button>
+            <button class="button button-assertive button-block" ng-click="cardSwipedLeft(cards.length-1);cardDestroyed(cards.length-1)">No</button>
+            <button class="button button-balanced button-block" ng-click="cardSwipedRight(cards.length-1);cardDestroyed(cards.length-1)">Yes</button>
         </div>
     </ion-content>
 </ion-view></script>
