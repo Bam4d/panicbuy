@@ -27,16 +27,16 @@
     },
     "installed_plugins": {
         "com.ionic.keyboard": {
-            "PACKAGE_NAME": "com.ionicframework.panicbuy158766"
+            "PACKAGE_NAME": "com.thrust.gifthacker"
         },
         "org.apache.cordova.console": {
-            "PACKAGE_NAME": "com.ionicframework.panicbuy158766"
+            "PACKAGE_NAME": "com.thrust.gifthacker"
         },
         "org.apache.cordova.device": {
-            "PACKAGE_NAME": "com.ionicframework.panicbuy158766"
+            "PACKAGE_NAME": "com.thrust.gifthacker"
         },
         "org.apache.cordova.inappbrowser": {
-            "PACKAGE_NAME": "com.ionicframework.panicbuy158766"
+            "PACKAGE_NAME": "com.thrust.gifthacker"
         }
     },
     "dependent_plugins": {}

@@ -11,6 +11,7 @@
           height: 504px;
       }
     </style>
+    <script src="cordova.js"></script>
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
@@ -119,24 +120,21 @@ angular.module('app', ['ionic', 'starter'])
     <ion-content padding="true" scroll="false" class="has-header">
         <h1 class="timer">{{timer | date: "mm:ss"}}</h1>
         <h2 style="text-align: center; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">{{cards[cards.length-1].title}}</h2>
-        
-      <td-cards>
-        <td-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-swipe-left="cardSwipedLeft($index)" on-swipe-right="cardSwipedRight($index)" on-partial-swipe="cardPartialSwipe(amt)" class="card-{{card.index}}" ng-controller="CardCtrl">
-          <div class="image">
-            <div class="yes-text" ng-style="leftTextOpacity">LIKE</div>
-            <img class="prodcard" ng-src="{{card.image}}">
-            <div class="no-text" ng-style="rightTextOpacity">NOPE</div>
-          </div>
-        </td-card>
-      </td-cards>
 
-      <div class="spacer" style="width: 300px; height: 135px;"></div>
-        <div style="line-height: 250px; border: 1px solid rgb(238, 238, 238); border-radius: 3px; text-align: center; background-color: rgb(255, 255, 255);">
-            <i ng-hide="cards.length" class="icon ion-loading-c" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>&nbsp;
+        
+        
+        
+      
+
+      <div class="spacer" style="width: 300px; height: 20px;"></div>
+        <div style=" border: 1px solid rgb(238, 238, 238); border-radius: 3px; text-align: center; background-color: rgb(255, 255, 255);">
+            <div ng-hide="!cards.length" class="image" style="text-align: center;">
+               <img class="prodcard" ng-src="{{cards[cards.length-1].image}}">
+            </div>
         </div>
         <div class="button-bar">
-            <button class="button button-assertive button-block" ng-click="cardSwipedLeft($index);cardDestroyed($index)">No</button>
-            <button class="button button-balanced button-block" ng-click="cardSwipedRight($index);cardDestroyed($index)">Yes</button>
+            <button class="button button-assertive button-block" ng-click="cardSwipedLeft(cards.length-1);cardDestroyed(cards.length-1)">No</button>
+            <button class="button button-balanced button-block" ng-click="cardSwipedRight(cards.length-1);cardDestroyed(cards.length-1)">Yes</button>
         </div>
     </ion-content>
 </ion-view></script>
@@ -148,7 +146,7 @@ angular.module('app', ['ionic', 'starter'])
                 <img ng-src="{{item.image}}">
                 <h2>{{item.title}}</h2>
                 <p>{{item.price}}</p>
-                <button class="button button-balanced button-block" ng-click="show(item)">Show me!</button>
+                <button class="button button-balanced button-block" ng-click="showMe(item)">Show me!</button>
             </ion-item>
         </ion-list>
     </ion-content>

@@ -7835,3 +7835,11 @@ button.button.raza-button {
   border-bottom: 5px solid #2980B9;
   font-weight: bold;
   font-size: 1.5em; }
+
+.timer {
+  color: #42B87A;
+  text-align: center; }
+
+.prodcard {
+  width: 300px;
+  height: 300px; }
