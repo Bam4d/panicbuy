@@ -7014,3 +7014,14 @@ a.button {
   opacity: 0;
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
+
+ .timer {
+ 	text-align: center;
+ 	font-family: "Helvetica";
+ 	color: #42B87A;
+ }
+
+ .prodcard {
+ 	width: 300px;
+ 	height: 300px;
+ }

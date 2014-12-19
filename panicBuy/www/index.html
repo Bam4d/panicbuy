@@ -12,16 +12,15 @@
       }
     </style>
 
-    <link href="/css/preview-frame.css" rel="stylesheet">
-
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
-    <script src="lib/ionic-contrib-tinder-cards/ionic.tdcards.js"></script>
+    <script src="lib/ionic-ion-tinder-cards/ionic.tdcards.js"></script>
     <script src="js/app.js"></script>
 
     <!-- compiled css output -->
     <link href="css/ionic.app.css" rel="stylesheet">
-    <link href="lib/ionic-contrib-tinder-cards/ionic.tdcards.css" rel="stylesheet">
+    <link href="lib/ionic-ion-tinder-cards/ionic.tdcards.css" rel="stylesheet">
+    <link href="lib/ionic-ion-tinder-cards/demo/app.css" rel="stylesheet">
 
 
     <script>
@@ -109,12 +108,7 @@ angular.module('app', ['ionic', 'starter'])
                 <button class="button button-stable button-block" ng-class="{active: price == 50.00}" ng-click="price = 50.00">£50</button>
             </div>
         </form>
-        <h4>Speed</h4>
-        <div class="button-bar">
-            <button class="button button-stable button-block" ng-class="{active: speed == 'slow'}" ng-click="speed = 'slow'">Slow</button>
-            <button class="button button-stable button-block" ng-class="{active: speed == 'fast'}" ng-click="speed = 'fast'">Fast</button>
-            <button class="button button-stable button-block" ng-class="{active: speed == 'cray'}" ng-click="speed = 'cray'">Cray</button>
-        </div>
+        
         <div class="spacer" style="width: 300px; height: 106px;"></div>
         <button ng-click="go()" class="button button-positive button-block">Go!</button>
     </ion-content>
@@ -122,38 +116,38 @@ angular.module('app', ['ionic', 'starter'])
 <script id="page5.html" type="text/ng-template">
 <ion-view title="BUY BUY BUY" ng-controller="CardsCtrl">
     <ion-content padding="true" scroll="false" class="has-header">
-        <h1>0:29</h1>
-        <div class="spacer" style="width: 300px; height: 115px;"></div>
-
+        <h1 class="timer">{{timer | date: "mm:ss"}}</h1>
+        <h2 style="text-align: center; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">{{cards[cards.length-1].title}}</h2>
+        
       <td-cards>
         <td-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-swipe-left="cardSwipedLeft($index)" on-swipe-right="cardSwipedRight($index)" on-partial-swipe="cardPartialSwipe(amt)" class="card-{{card.index}}" ng-controller="CardCtrl">
           <div class="image">
             <div class="yes-text" ng-style="leftTextOpacity">LIKE</div>
-            <img ng-src="{{card.image}}">
+            <img class="prodcard" ng-src="{{card.image}}">
             <div class="no-text" ng-style="rightTextOpacity">NOPE</div>
           </div>
         </td-card>
       </td-cards>
 
-
+      <div class="spacer" style="width: 300px; height: 135px;"></div>
         <div style="line-height: 250px; border: 1px solid rgb(238, 238, 238); border-radius: 3px; text-align: center; background-color: rgb(255, 255, 255);">
-            <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
+            <i ng-hide="cards.length" class="icon ion-loading-c" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>&nbsp;
         </div>
         <div class="button-bar">
-            <button class="button button-assertive button-block">No</button>
-            <button class="button button-balanced button-block">Yes</button>
+            <button class="button button-assertive button-block" ng-click="cardSwipedLeft($index);cardDestroyed($index)">No</button>
+            <button class="button button-balanced button-block" ng-click="cardSwipedRight($index);cardDestroyed($index)">Yes</button>
         </div>
     </ion-content>
 </ion-view></script>
 <script id="page7.html" type="text/ng-template">
-<ion-view title="Panic Bag">
+<ion-view title="Gift Hacker Bag">
     <ion-content padding="true" class="has-header" ng-controller="ItemsCtrl">
         <ion-list>
             <ion-item ng-repeat="item in items" class="item-thumbnail-left">
                 <img ng-src="{{item.image}}">
                 <h2>{{item.title}}</h2>
                 <p>{{item.price}}</p>
-                <button class="button button-balanced button-block" ng-click="showMe(item)">Show me!</button>
+                <button class="button button-balanced button-block" ng-click="show(item)">Show me!</button>
             </ion-item>
         </ion-list>
     </ion-content>
