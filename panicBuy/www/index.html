@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <style>
+      .angular-google-map-container {
+          width: 100%;
+          height: 504px;
+      }
+    </style>
+
+    <link href="/css/preview-frame.css" rel="stylesheet">
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/ionic-contrib-tinder-cards/ionic.tdcards.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- compiled css output -->
+    <link href="css/ionic.app.css" rel="stylesheet">
+    <link href="lib/ionic-contrib-tinder-cards/ionic.tdcards.css" rel="stylesheet">
+
+
+    <script>
+// Ionic Starter App
+
+// angular.module is a global place for creating, registering and retrieving Angular modules
+// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
+// the 2nd parameter is an array of 'requires'
+// 'starter.services' is found in services.js
+// 'starter.controllers' is found in controllers.js
+angular.module('app', ['ionic', 'starter'])
+
+.run(function($ionicPlatform) {
+  $ionicPlatform.ready(function() {
+    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+    // for form inputs)
+    if(window.cordova && window.cordova.plugins.Keyboard) {
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+    }
+    if(window.StatusBar) {
+      // org.apache.cordova.statusbar required
+      StatusBar.styleDefault();
+    }
+  });
+})
+
+.config(function($stateProvider, $urlRouterProvider) {
+
+  // Ionic uses AngularUI Router which uses the concept of states
+  // Learn more here: https://github.com/angular-ui/ui-router
+  // Set up the various states which the app can be in.
+  // Each state's controller can be found in controllers.js
+  $stateProvider
+    
+    .state('page3', {
+      url: '/config',
+      templateUrl: 'page3.html'
+    })
+    
+    .state('page5', {
+      url: '/play',
+      templateUrl: 'page5.html'
+    })
+    
+    .state('page7', {
+      url: '/items',
+      templateUrl: 'page7.html'
+    })
+    ;
+
+  // if none of the above states are matched, use this as the fallback
+  
+  $urlRouterProvider.otherwise('/config');
+  
+
+});
+
+
+    </script>
+  </head>
+  <body ng-app="app" animation="slide-left-right-ios7">
+  <div>
+    <div>
+        <ion-nav-bar class="bar-stable">
+            <ion-nav-back-button class="button-icon icon ion-ios7-arrow-back">Back</ion-nav-back-button>
+        </ion-nav-bar>
+        <ion-nav-view></ion-nav-view>
+    </div>
+</div>
+<script id="page3.html" type="text/ng-template">
+<ion-view title="Start a new round">
+    <ion-content padding="true" scroll="false" class="has-header">
+        <h4>Round Length</h4>
+        <div class="button-bar">
+            <button class="button button-stable button-block">0:30</button>
+            <button class="button button-stable button-block">1:00</button>
+            <button class="button button-stable button-block">3:00</button>
+        </div>
+        <h4>Price Limit</h4>
+        <div class="button-bar"></div>
+        <form>
+            <div class="button-bar">
+                <button class="button button-stable button-block">£10</button>
+                <button class="button button-stable button-block">£20</button>
+                <button class="button  button-block">£50</button>
+            </div>
+        </form>
+        <h4>Speed</h4>
+        <div class="button-bar">
+            <button class="button button-stable button-block">Slow</button>
+            <button class="button button-stable button-block">Fast</button>
+            <button class="button button-stable button-block">Crazy</button>
+        </div>
+        <div class="spacer" style="width: 300px; height: 106px;"></div>
+        <a href="#/play" class="button button-positive button-block">Go!</a>
+    </ion-content>
+</ion-view></script>
+<script id="page5.html" type="text/ng-template">
+<ion-view title="BUY BUY BUY" ng-controller="CardsCtrl">
+    <ion-content padding="true" scroll="false" class="has-header">
+        <h1>0:29</h1>
+        <div class="spacer" style="width: 300px; height: 115px;"></div>
+
+      <td-cards>
+        <td-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-swipe-left="cardSwipedLeft($index)" on-swipe-right="cardSwipedRight($index)" on-partial-swipe="cardPartialSwipe(amt)" class="card-{{card.index}}" ng-controller="CardCtrl">
+          <div class="image">
+            <div class="yes-text" ng-style="leftTextOpacity">LIKE</div>
+            <img ng-src="{{card.image}}">
+            <div class="no-text" ng-style="rightTextOpacity">NOPE</div>
+          </div>
+        </td-card>
+      </td-cards>
+
+
+        <div style="line-height: 250px; border: 1px solid rgb(238, 238, 238); border-radius: 3px; text-align: center; background-color: rgb(255, 255, 255);">
+            <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
+        </div>
+        <div class="button-bar">
+            <button class="button button-assertive button-block">No</button>
+            <button class="button button-balanced button-block">Yes</button>
+        </div>
+    </ion-content>
+</ion-view></script>
+<script id="page7.html" type="text/ng-template">
+<ion-view title="Panic Bag">
+    <ion-content padding="true" class="has-header">
+        <ion-list>
+            <ion-item class="item-thumbnail-left">
+                <img src="/img/avatar-img.png">
+                <h2>Oxfam Donation</h2>
+                <p>£10.00</p>
+                <button class="button button-balanced button-block">Buy</button>
+            </ion-item>
+            <ion-item class="item-thumbnail-left">
+                <img src="/img/avatar-img.png">
+                <h2>Novelty Socks</h2>
+                <p>£3.50</p>
+                <button class="button button-balanced button-block">Buy</button>
+            </ion-item>
+            <ion-item class="item-thumbnail-left">
+                <img src="/img/avatar-img.png">
+                <h2>Christmas Jumper</h2>
+                <p>£15.00</p>
+                <button class="button button-balanced button-block">Buy</button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view></script>
+  </body>
+</html>
