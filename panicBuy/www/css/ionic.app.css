@@ -7020,3 +7020,8 @@ a.button {
  	font-family: "Helvetica";
  	color: #42B87A;
  }
+
+ .prodcard {
+ 	width: 300px;
+ 	height: 300px;
+ }

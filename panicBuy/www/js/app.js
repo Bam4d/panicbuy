@@ -10,8 +10,13 @@ gh.factory('ProductAPI', function($http) {
   var state = {
   };
 
+  state.items = [];
+
   return {
 
+    addItem: function(prod) {
+      state.items.push(prod);
+    },
     getState: function() {
       return state;
     },
@@ -39,65 +44,70 @@ gh.controller('ConfigCtrl', function($scope, $state, ProductAPI) {
  
 });
 
-gh.controller('CardsCtrl', function($scope, TDCardDelegate, ProductAPI ) {
+gh.controller('CardsCtrl', function($scope, $state, $timeout, TDCardDelegate, ProductAPI ) {
   console.log('CARDS CTRL');
-  var cardTypes = [
-    { image: 'lib/ionic-ion-tinder-cards/demo/max.jpg' },
-    { image: 'lib/ionic-ion-tinder-cards/demo/ben.png' },
-    { image: 'lib/ionic-ion-tinder-cards/demo/perry.jpg' },
-  ];
+  
+  $scope.time = ProductAPI.getState().roundTimer;
+  console.log($scope.time);
+  if(!$scope.time) {
+    $state.go("config");
+  }
+
+  $scope.timer = new Date(1000*$scope.time);
+
+  var countdown = function() {
+
+    console.log($scope.timer);
+
+    $scope.timer = new Date($scope.timer.getTime()-1000);
+
+    if($scope.timer.getTime() > 0) {
+      console.log($scope.timer);
+      $timeout(countdown, 1000);
+    } else {
+      $state.go("items");
+    }
+  };
 
   ProductAPI.getProductList().then(function(xhr) {
     console.log(arguments);
     $scope.data = xhr.data;
+    $scope.cards = Array.prototype.slice.call($scope.data, 0);
+
+    countdown();
   });
 
-  $scope.cards = Array.prototype.slice.call(cardTypes, 0);
-
   $scope.cardDestroyed = function(index) {
+    console.log("index",index);
     $scope.cards.splice(index, 1);
   };
 
-  $scope.addCard = function() {
-    var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
-    newCard.id = Math.random();
-    $scope.cards.push(angular.extend({}, newCard));
+  $scope.addCard = function(index, add) {
+
+    if(add) {
+      ProductAPI.addItem($scope.cards[index]);
+    }
   }
 });
 
 gh.controller('CardCtrl', function($scope, TDCardDelegate) {
   $scope.cardSwipedLeft = function(index) {
     console.log('LEFT SWIPE');
-    $scope.addCard();
+    $scope.addCard(index, false);
   };
   $scope.cardSwipedRight = function(index) {
     console.log('RIGHT SWIPE');
-    $scope.addCard();
+    $scope.addCard(index, true);
   };
 });
 
 gh.controller('ItemsCtrl', function($scope, ProductAPI) {
 
-  // Delte this!!!!!!!!
-  // ProductAPI.getProductList().then(function(xhr) {
-  //   console.log(arguments);
-  //   $scope.data = xhr.data;
-  //   ProductAPI.getState().items = $scope.data;
+  $scope.items = ProductAPI.getState().items;
 
-  //   console.log("state:",ProductAPI.getState());
-
-  //   $scope.items = ProductAPI.getState().items;
-  // });
-
-  
   $scope.showMe = function(item) {
-
     window.open(item.link, '_blank', 'location=yes');
-
   };
-
-
-
 
 });
 
